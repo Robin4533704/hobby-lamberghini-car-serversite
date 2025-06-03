@@ -31,6 +31,9 @@ await client.connect();
 // add card 
 
     const carsCollection = client.db('carDB').collection('cars')
+// 
+const usersCallection = client.db('carDB').collection('users')
+
 
     app.get('/cars',async (req, res)=>{
       const result = await carsCollection.find().toArray();
@@ -69,6 +72,14 @@ res.send(result)
   const result = await carsCollection.deleteOne(query);
   res.send(result);
  })
+
+//  user related API
+app.post('/users,', async(req, res)=>{
+  const userProfile=req.body;
+  console.log(userProfile)
+  const result = await usersCallection.insertOne(userProfile);
+  res.send(result)
+})
 
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. you succesfully connected to mongodb!");
