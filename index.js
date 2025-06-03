@@ -25,7 +25,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-await client.connect();
+// await client.connect();
 
     // connect the client to the server (optional starting in v4.7) 
 // add card 
@@ -70,8 +70,8 @@ res.send(result)
   res.send(result);
  })
 
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. you succesfully connected to mongodb!");
+    // await client.db("admin").command({ ping: 1 });
+    // console.log("Pinged your deployment. you succesfully connected to mongodb!");
   }
   finally {
     // await client.close(); 
