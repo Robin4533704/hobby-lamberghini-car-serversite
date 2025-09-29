@@ -22,7 +22,7 @@ let usersCollection, groupsCollection;
 
 async function connectDB() {
   try {
-    await client.connect();
+    
     usersCollection = client.db("HobyHove").collection("users");
     groupsCollection = client.db("HobyHove").collection("groups");
     console.log("✅ MongoDB connected successfully");
@@ -79,9 +79,11 @@ app.put("/groups/:id", async (req, res) => {
     { $set: updateData },
     { returnDocument: "after" }
   );
+  console.log(updated);
 
-  if (!updated.value) return res.status(404).json({ error: "Group not found" });
-  res.json(updated.value);
+  if (!updated) return res.status(404).json({ error: "Group not found" });
+  
+  res.json(updated);
 });
 
 app.delete("/groups/:id", async (req, res) => {
